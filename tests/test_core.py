@@ -17,7 +17,8 @@ sys.path.insert(0, str(ROOT))
 
 import config as cfg                                      # noqa: E402
 from core import clubs, features, priorities, similarity   # noqa: E402
-from core.loader import DataContractError, load, suppression_audit  # noqa: E402
+from core.loader import (GENERATED, DataContractError, load,  # noqa: E402
+                         preflight, suppression_audit)
 
 
 # --------------------------------------------------------------- fixtures
@@ -396,3 +397,53 @@ def test_topk_respects_floor(ds, ctx):
     kept = idx >= 0
     assert np.all(val[kept] >= 0.95)
     assert kept.sum() < idx.size, "floor of 0.95 suppressed nothing"
+
+
+# ------------------------------------------------------ deployability
+def test_app_is_self_contained(ds):
+    """Every file the app reads must live inside the app directory.
+
+    Deploying the app folder as a repository root made ROOT.parent point outside
+    the checkout, and the admit pool resolved there. Streamlit Cloud redacts
+    exception text, so it surfaced as a bare FileNotFoundError with no filename.
+    """
+    pool = cfg.pool_path()
+    assert pool.exists()
+    assert cfg.DATA_DIR in pool.parents or pool.parent == cfg.DATA_DIR, (
+        f"pool resolves to {pool}, outside {cfg.DATA_DIR}")
+    assert cfg.ROOT in pool.parents, f"{pool} escapes the app directory"
+
+    for name in GENERATED:
+        path = cfg.DATA_DIR / name
+        assert path.exists(), f"missing {name}"
+        assert cfg.ROOT in path.parents
+
+
+def test_in_app_copy_is_preferred_over_the_sibling():
+    """Order matters: the deployed copy must win, or a stale sibling shadows it."""
+    assert cfg.POOL_CANDIDATES[0] == cfg.DATA_DIR / cfg.POOL_NAME
+    assert cfg.POOL_CANDIDATES[0] != cfg.POOL_CANDIDATES[1]
+
+
+def test_preflight_names_the_missing_file(tmp_path):
+    """A redacted traceback is useless, so the failure has to be actionable."""
+    with pytest.raises(DataContractError) as exc:
+        preflight(tmp_path)
+    message = str(exc.value)
+    assert "alumni_outcomes.csv" in message
+    assert "generate_mock_graph_data" in message
+
+
+def test_preflight_passes_on_the_real_data_dir():
+    preflight()
+
+
+def test_no_module_reads_outside_the_app_directory():
+    """Catch a reintroduced `ROOT.parent` read before it reaches a deployment."""
+    offenders = []
+    for folder in ("core", "data", "ui"):
+        for path in (ROOT / folder).glob("*.py"):
+            text = path.read_text(encoding="utf-8")
+            if "ROOT.parent" in text or "parent.parent /" in text:
+                offenders.append(str(path.relative_to(ROOT)))
+    assert not offenders, f"path escapes the app directory in {offenders}"

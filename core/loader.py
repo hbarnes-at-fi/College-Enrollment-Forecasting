@@ -75,10 +75,35 @@ def _idf(sets: dict[str, set[str]], universe: list[str]) -> dict[str, float]:
     return {u: math.log(n / max(1, c)) if c else math.log(n) for u, c in df.items()}
 
 
+GENERATED = ["alumni_outcomes.csv", "activities_dim.csv",
+             "campus_clubs_dim.csv", "activities_edges.csv", "club_edges.csv"]
+
+
+def preflight(data_dir: Path | None = None) -> None:
+    """Fail with something actionable instead of a redacted FileNotFoundError.
+
+    Streamlit Cloud redacts exception messages, so an unresolved path surfaces as
+    a bare traceback with no indication of which file is missing. This names them
+    all at once, before any read is attempted.
+    """
+    d = Path(data_dir) if data_dir else cfg.DATA_DIR
+    missing = [str(d / name) for name in GENERATED if not (d / name).exists()]
+    try:
+        cfg.pool_path()
+    except FileNotFoundError as exc:
+        raise DataContractError(str(exc)) from exc
+    if missing:
+        raise DataContractError(
+            "Missing generated data files:\n  " + "\n  ".join(missing)
+            + "\nRun: python -m data.generate_mock_graph_data\n"
+            + "If this is a deployment, these files must be committed.")
+
+
 def load(data_dir: Path | None = None) -> Dataset:
     d = Path(data_dir) if data_dir else cfg.DATA_DIR
+    preflight(d)
 
-    applicants = pd.read_csv(cfg.POOL_PATH)
+    applicants = pd.read_csv(cfg.pool_path())
     # SR-3 / FR-5: drop at the boundary.
     applicants = applicants.drop(columns=[c for c in cfg.PROTECTED_COLUMNS
                                           if c in applicants.columns])

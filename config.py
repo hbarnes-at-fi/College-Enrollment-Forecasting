@@ -8,9 +8,30 @@ from pathlib import Path
 # ---------------------------------------------------------------- paths
 ROOT = Path(__file__).resolve().parent
 DATA_DIR = ROOT / "data"
-# The current-cycle pool (DR-1) lives one level up and is reused unchanged (A1).
-POOL_PATH = ROOT.parent / "mock_admit_pool_fall2026.csv"
-LAYOUT_CACHE = DATA_DIR / "layout.json"
+POOL_NAME = "mock_admit_pool_fall2026.csv"
+
+# The current-cycle pool (DR-1) is reused unchanged (A1), but it must live INSIDE
+# the app directory. Resolving it to ROOT.parent worked locally, where the app is
+# a subfolder of the project, and broke the moment the app folder was deployed as
+# a repository root: ROOT.parent was then outside the checkout entirely.
+# In-app copy first, original sibling layout second, so both work.
+POOL_CANDIDATES = [DATA_DIR / POOL_NAME, ROOT.parent / POOL_NAME]
+
+
+def pool_path() -> Path:
+    for candidate in POOL_CANDIDATES:
+        if candidate.exists():
+            return candidate
+    looked = "\n  ".join(str(c) for c in POOL_CANDIDATES)
+    raise FileNotFoundError(
+        f"Cannot find the admit pool '{POOL_NAME}'. Looked in:\n  {looked}\n"
+        f"The app must be self-contained to deploy: keep a copy at "
+        f"data/{POOL_NAME} and commit it.")
+
+
+# Resolved lazily via pool_path(); kept as a module attribute for callers that
+# only need the location when it is known to exist.
+POOL_PATH = next((c for c in POOL_CANDIDATES if c.exists()), POOL_CANDIDATES[0])
 
 # ---------------------------------------------------------------- scale
 SEED = 20260920

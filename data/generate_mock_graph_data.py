@@ -99,7 +99,7 @@ def zipf_weights(n, exponent):
 
 # ------------------------------------------------------------ load DR-1
 def load_pool():
-    with open(cfg.POOL_PATH, newline="", encoding="utf-8") as f:
+    with open(cfg.pool_path(), newline="", encoding="utf-8") as f:
         return list(csv.DictReader(f))
 
 
