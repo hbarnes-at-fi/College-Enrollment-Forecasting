@@ -1,0 +1,48 @@
+activity_id,activity_name,category
+ACT-01,Debate and Speech,Competitive intellectual
+ACT-02,Model UN,Competitive intellectual
+ACT-03,Math Olympiad,Competitive intellectual
+ACT-04,Science Olympiad,Competitive intellectual
+ACT-05,Robotics,Competitive intellectual
+ACT-06,Quiz Bowl,Competitive intellectual
+ACT-07,Instrumental Music,Arts
+ACT-08,Vocal Music,Arts
+ACT-09,Theatre,Arts
+ACT-10,Dance,Arts
+ACT-11,Studio Art,Arts
+ACT-12,Film,Arts
+ACT-13,Newspaper,Publications
+ACT-14,Yearbook,Publications
+ACT-15,Literary Magazine,Publications
+ACT-16,Radio,Publications
+ACT-17,Student Government,Governance
+ACT-18,Class Officer,Governance
+ACT-19,Honour Council,Governance
+ACT-20,Community Volunteering,Service
+ACT-21,Tutoring and Peer Mentoring,Service
+ACT-22,Cultural and Affinity Organisations,Identity and culture
+ACT-23,International Student Association,Identity and culture
+ACT-24,Entrepreneurship,Enterprise
+ACT-25,Business and Investment,Enterprise
+ACT-26,DECA,Enterprise
+ACT-27,Independent Research,Research
+ACT-28,Published Work,Research
+ACT-29,Lab Assistantship,Research
+ACT-30,Part-time Employment,Obligation
+ACT-31,Family Caregiving,Obligation
+ACT-32,Football,Athletics
+ACT-33,Field Hockey,Athletics
+ACT-34,Men's Soccer,Athletics
+ACT-35,Women's Soccer,Athletics
+ACT-36,Women's Lacrosse,Athletics
+ACT-37,Men's Lacrosse,Athletics
+ACT-38,Baseball,Athletics
+ACT-39,Softball,Athletics
+ACT-40,Swimming & Diving,Athletics
+ACT-41,Track & Field,Athletics
+ACT-42,Women's Basketball,Athletics
+ACT-43,Men's Basketball,Athletics
+ACT-44,Volleyball,Athletics
+ACT-45,Rowing,Athletics
+ACT-46,Golf,Athletics
+ACT-47,Wrestling,Athletics

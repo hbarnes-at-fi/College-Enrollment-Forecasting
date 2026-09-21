@@ -1,0 +1,46 @@
+club_id,club_name,category,linked_activity_id,current_members,graduating_members,min_viable_members,charter_status,advisor_backed,proxy_sensitive
+CLB-01,Debate Society,Competitive intellectual,ACT-01,14,2,8,Active,Y,N
+CLB-02,Model United Nations,Competitive intellectual,ACT-02,20,5,10,Active,Y,N
+CLB-03,Math Club,Competitive intellectual,ACT-03,21,5,16,Active,N,N
+CLB-04,Science Olympiad Team,Competitive intellectual,ACT-04,18,2,13,Active,Y,N
+CLB-05,Robotics Team,Competitive intellectual,ACT-05,20,2,8,Active,Y,N
+CLB-06,Quiz Bowl,Competitive intellectual,ACT-06,25,17,15,Probationary,Y,N
+CLB-07,Concert Band,Arts,ACT-07,12,3,8,Active,N,N
+CLB-08,Orchestra,Arts,ACT-07,26,6,16,Active,N,N
+CLB-09,Chamber Choir,Arts,ACT-08,18,4,16,Active,N,N
+CLB-10,A Cappella Ensemble,Arts,ACT-08,13,2,9,Active,Y,N
+CLB-11,Student Theatre Company,Arts,ACT-09,18,3,16,Active,Y,N
+CLB-12,Dance Collective,Arts,ACT-10,10,2,8,Active,N,N
+CLB-13,Studio Art Collective,Arts,ACT-11,24,4,16,Active,Y,N
+CLB-14,Film Society,Arts,ACT-12,21,5,11,Active,Y,N
+CLB-15,Student Newspaper,Publications,ACT-13,12,2,9,Active,N,N
+CLB-16,Yearbook,Publications,ACT-14,22,17,10,Probationary,Y,N
+CLB-17,Literary Review,Publications,ACT-15,16,2,12,Active,Y,N
+CLB-18,Campus Radio,Publications,ACT-16,19,12,13,Active,Y,N
+CLB-19,Student Government Association,Governance,ACT-17,12,1,12,Active,Y,N
+CLB-20,Honour Council,Governance,ACT-19,14,7,10,Probationary,Y,N
+CLB-21,Volunteer Corps,Service,ACT-20,17,2,15,Active,N,N
+CLB-22,Peer Tutoring Centre,Service,ACT-21,18,5,16,Active,N,N
+CLB-23,International Students Association,Identity and culture,ACT-23,19,5,11,Active,Y,N
+CLB-24,Entrepreneurship Society,Enterprise,ACT-24,21,4,16,Active,Y,N
+CLB-25,Investment Club,Enterprise,ACT-25,22,4,16,Active,Y,N
+CLB-26,Undergraduate Research Collective,Research,ACT-27,10,2,8,Active,N,N
+CLB-27,Black Student Union,Identity and culture,ACT-22,20,5,16,Active,Y,Y
+CLB-28,Latino Student Alliance,Identity and culture,ACT-22,14,1,10,Active,Y,Y
+CLB-29,Asian Students Association,Identity and culture,ACT-22,21,3,10,Active,Y,Y
+CLB-30,Hillel,Identity and culture,ACT-22,22,9,16,Active,Y,Y
+CLB-31,Newman Catholic Community,Identity and culture,ACT-22,14,1,14,Active,Y,Y
+CLB-32,Muslim Students Association,Identity and culture,ACT-22,9,1,8,Active,Y,Y
+CLB-33,Outdoors Club,Service,,17,3,11,Active,N,N
+CLB-34,Chess Club,Competitive intellectual,,14,8,10,Active,Y,N
+CLB-35,Esports Association,Competitive intellectual,,15,2,15,Active,Y,N
+CLB-36,Sustainability Coalition,Service,,20,5,14,Active,Y,N
+CLB-37,Habitat Build Chapter,Service,ACT-20,18,5,12,Active,Y,N
+CLB-38,Pre-Health Society,Research,,24,5,15,Active,Y,N
+CLB-39,Mock Trial,Competitive intellectual,ACT-01,13,2,13,Active,Y,N
+CLB-40,Political Union,Governance,ACT-17,27,7,15,Active,Y,N
+CLB-41,Photography Club,Arts,ACT-11,20,2,11,Active,Y,N
+CLB-42,Culinary Society,Enterprise,,16,12,8,Probationary,Y,N
+CLB-43,Board Game Guild,Competitive intellectual,,16,5,16,Probationary,Y,N
+CLB-44,Ballroom Dance Society,Arts,ACT-10,14,3,10,Active,Y,N
+CLB-45,Astronomy Club,Research,ACT-04,25,14,15,Active,N,N
